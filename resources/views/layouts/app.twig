@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}{% endblock %}</title>
+
+		<link rel="stylesheet" href="{{ base_url() }}/css/app.css">
+	</head>
+	<body>
+		{% include 'layouts/partials/_nav.twig' %}
+		
+		<div class="container">
+			<section id="app" class="section">
+				{% block content %}{% endblock %}
+			</section>
+		</div>
+
+		<script src="{{ base_url() }}/js/app.js"></script>
+	</body>
+</html>

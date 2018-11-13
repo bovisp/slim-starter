@@ -1,13 +1,5 @@
 <?php
 
-$app = new \Slim\App([
-	'settings' => [
-		'displayErrorDetails' => true
-	]
-]);
-
-$container = $app->getContainer();
-
 // Register component on container
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig('../resources/views', [

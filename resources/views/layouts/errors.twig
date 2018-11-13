@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}{% endblock %}</title>
+
+		<link rel="stylesheet" href="{{ base_url() }}/css/app.css">
+	</head>
+	<body>		
+		<section class="hero is-light is-fullheight">
+			{% block content %}{% endblock %}
+		</section>
+	</body>
+</html>

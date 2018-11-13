@@ -1,33 +1,42 @@
 <?php
 
-$app->get('/', function ($request, $response) {
-	return $this->view->render($response, 'home.twig');
-})->setName('home');
+use App\Controllers\HomeController;
+use App\Controllers\UsersController;
+use App\Controllers\DashboardController;
+use App\Controllers\Auth\LoginController;
+use App\Middleware\RedirectIfUnauthenticated;
+use App\Controllers\Contact\ContactController;
+use App\Controllers\Contact\ContactConfirmController;
 
-$app->get('/users', function ($request, $response) {
-	$users = [
-		[
-			'username' => 'bovisp',
-			'firstname' => 'Paul',
-			'lastname' => 'Bovis'
-		],
-		[
-			'username' => 'bovisv',
-			'firstname' => 'Vida',
-			'lastname' => 'Bovis'
-		],
-		[
-			'username' => 'bovise',
-			'firstname' => 'Eleanor',
-			'lastname' => 'Bovis'
-		],
-	];
+$app->get('/', HomeController::class . ':index')
+	->setName('home');
 
-	return $this->view->render($response, 'users/index.twig', [
-		'users' => $users
-	]);
-})->setName('users.index');
+$app->group('', function () {
+	$this->get('/dashboard', DashboardController::class . ':index')
+		->setName('dashboard.index');
+})->add(new RedirectIfUnauthenticated($container['router']));
 
-$app->get('/contact', function ($request, $response) {
-	return $this->view->render($response, 'contact.twig');
-})->setName('contact');
+$app->group('/auth', function () {
+	$this->get('/login', LoginController::class . ':index')
+		->setName('auth.login');
+});
+
+$app->group('/users', function () {
+	$this->get('', UsersController::class . ':index')
+		->setName('users.index');
+
+	$this->get('/{id}', UsersController::class . ':show')
+		->setName('users.show');
+});
+
+$app->group('/contact', function () {
+	$this->get('', ContactController::class . ':index')
+		->setName('contact.index');
+
+	$this->post('', ContactController::class . ':store')
+		->setName('contact.store');
+
+	$this->get('/confirm', ContactConfirmController::class . ':index')
+		->setName('contact.confirm');
+});
+

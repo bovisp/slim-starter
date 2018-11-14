@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item is-size-5" href="{{ base_url() }}">
-        SLIM APP
+        {{ getenv('APP_NAME') }}
       </a>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -18,18 +18,6 @@
       <div class="navbar-end">
         <a href="{{ path_for('home') }}" class="navbar-item">
           Home
-        </a>
-
-        <a href="{{ path_for('users.index') }}" class="navbar-item">
-          Users
-        </a>
-
-        <a href="{{ path_for('contact.index') }}" class="navbar-item">
-          Contact
-        </a>
-
-        <a href="{{ path_for('dashboard.index') }}" class="navbar-item">
-          Dashboard
         </a>
       </div>
     </div>

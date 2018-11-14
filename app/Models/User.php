@@ -2,14 +2,9 @@
 
 namespace App\Models;
 
-class User
-{
-	public function fullName()
-	{
-		if ($this->lastname === null) {
-			return $this->firstname;
-		}
+use Illuminate\Database\Eloquent\Model;
 
-		return "{$this->firstname} {$this->lastname}";
-	}
+class User extends Model
+{
+
 }

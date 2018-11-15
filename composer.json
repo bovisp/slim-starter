@@ -4,7 +4,8 @@
         "slim/twig-view": "^2.4",
         "symfony/var-dumper": "^4.1",
         "vlucas/phpdotenv": "^2.5",
-        "illuminate/database": "^5.7"
+        "illuminate/database": "^5.7",
+        "robmorgan/phinx": "^0.10.6"
     },
     "autoload": {
     	"psr-4": {

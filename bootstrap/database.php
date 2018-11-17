@@ -12,3 +12,7 @@ $capsule->addConnection(array_merge($config, [
 $capsule->bootEloquent();
 
 $capsule->setAsGlobal();
+
+$container['db'] = function($container) use ($capsule) {
+	return $capsule;
+};

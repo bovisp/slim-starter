@@ -1,0 +1,55 @@
+{% extends 'layouts/auth.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+	<h2 class="title is-2 has-text-black-ter">
+		Register
+	</h2>
+
+	<div class="box">
+		<form action="{{ path_for('auth.register.store') }}" method="POST">
+			{{ csrf_field() | raw }}
+			
+			<div class="field">
+				<label class="label" for="firstname">First name</label>
+
+				<div class="control">
+			    	<input class="input is-medium" type="text" name="firstname">
+			    </div>
+			</div>
+
+			<div class="field">
+				<label class="label" for="firstname">Last name</label>
+
+				<div class="control">
+			    	<input class="input is-medium" type="text" name="lastname">
+			    </div>
+			</div>
+
+			<div class="field">
+				<label class="label" for="email">Email</label>
+
+				<div class="control">
+			    	<input class="input is-medium" type="email" name="email">
+			    </div>
+			</div>
+
+			<div class="field">
+				<label class="label" for="password">Password</label>
+
+				<div class="control">
+			    	<input class="input is-medium" type="password" name="password">
+			    </div>
+			</div>
+
+			<div class="field">
+				<button class="button is-medium is-dark is-fullwidth">
+					Register
+				</button>
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

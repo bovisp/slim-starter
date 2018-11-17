@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require __DIR__ . '/../vendor/autoload.php';
 
 // Initialize dotenv.
@@ -31,6 +33,7 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 
+require_once 'csrf.php';
 require_once 'views.php';
 require_once 'database.php';
 require_once 'notFoundHandler.php';

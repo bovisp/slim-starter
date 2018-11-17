@@ -37,3 +37,4 @@ require_once 'csrf.php';
 require_once 'views.php';
 require_once 'database.php';
 require_once 'notFoundHandler.php';
+require_once 'validator.php';

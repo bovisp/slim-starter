@@ -16,32 +16,76 @@
 				<label class="label" for="firstname">First name</label>
 
 				<div class="control">
-			    	<input class="input is-medium" type="text" name="firstname">
+			    	<input 
+			    		class="input is-medium{{ errors.firstname ? ' is-danger' : '' }}" 
+			    		type="text" 
+			    		name="firstname"
+			    		value="{{ old.firstname }}"
+			    	>
 			    </div>
+
+			    {% if errors.firstname %}
+					<p class="help is-danger">
+						{{ errors.firstname|first }}
+					</p>
+			    {% endif %}
 			</div>
 
 			<div class="field">
 				<label class="label" for="firstname">Last name</label>
 
 				<div class="control">
-			    	<input class="input is-medium" type="text" name="lastname">
+			    	<input 
+			    		class="input is-medium{{ errors.lastname ? ' is-danger' : '' }}" 
+			    		type="text" 
+			    		name="lastname"
+			    		value="{{ old.lastname }}"
+			    	>
 			    </div>
+
+			    {% if errors.lastname %}
+					<p class="help is-danger">
+						{{ errors.lastname|first }}
+					</p>
+			    {% endif %}
 			</div>
 
 			<div class="field">
 				<label class="label" for="email">Email</label>
 
 				<div class="control">
-			    	<input class="input is-medium" type="email" name="email">
+			    	<input 
+			    		class="input is-medium{{ errors.email ? ' is-danger' : '' }}" 
+			    		type="email" 
+			    		name="email"
+			    		value="{{ old.email }}"
+			    	>
 			    </div>
+
+			    {% if errors.email %}
+					<p class="help is-danger">
+						{{ errors.email|first }}
+					</p>
+			    {% endif %}
 			</div>
 
 			<div class="field">
 				<label class="label" for="password">Password</label>
 
 				<div class="control">
-			    	<input class="input is-medium" type="password" name="password">
+			    	<input 
+			    		class="input is-medium{{ errors.password ? ' is-danger' : '' }}" 
+			    		type="password" 
+			    		name="password"
+			    		value="{{ old.password }}"
+			    	>
 			    </div>
+
+			    {% if errors.password %}
+					<p class="help is-danger">
+						{{ errors.password|first }}
+					</p>
+			    {% endif %}
 			</div>
 
 			<div class="field">

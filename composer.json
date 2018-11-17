@@ -7,7 +7,8 @@
         "illuminate/database": "^5.7",
         "robmorgan/phinx": "^0.10.6",
         "slim/csrf": "^0.8.3",
-        "respect/validation": "^1.1"
+        "respect/validation": "^1.1",
+        "illuminate/events": "^5.7"
     },
     "autoload": {
     	"psr-4": {

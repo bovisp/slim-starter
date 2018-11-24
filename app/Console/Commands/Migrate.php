@@ -8,24 +8,24 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SayHello extends Command
+class Migrate extends Command
 {
 	/**
 	 * The command name.
 	 *
 	 * @var string
 	 */
-	protected $command = 'say:hello';
+	protected $command = 'migrate';
 
 	/**
 	 * The command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Say Hello.';
+	protected $description = 'Migrate table scema\'s to the database';
 
 	/**
-	 * Handle the command
+	 * Handle the command.
 	 * 
 	 * @param  InputInterface $input
 	 * @param  OutputInterface $input
@@ -34,9 +34,9 @@ class SayHello extends Command
 	 */
 	public function handle(InputInterface $input, OutputInterface $output)
 	{
-		for ($i = 0; $i < $input->getOption('repeat'); $i++) { 
-			$this->info('Hello ' . $this->argument('name'));
-		}
+		exec('vendor\bin\phinx migrate');
+
+		$this->info('Migrations successfully completed.');
 	}
 
 	/**
@@ -47,7 +47,7 @@ class SayHello extends Command
 	protected function arguments()
 	{
 		return [
-			['name', InputArgument::REQUIRED, 'Your name.'],
+			//
 		];
 	}
 
@@ -59,7 +59,7 @@ class SayHello extends Command
 	protected function options()
 	{
 		return [
-			['repeat', 'r', InputOption::VALUE_OPTIONAL, 'Times to rpeat the output', 1],
+			//
 		];
 	}
 }

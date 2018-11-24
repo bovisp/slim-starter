@@ -2,8 +2,10 @@
 
 namespace App\Controllers\Auth;
 
-use Respect\Validation\Validator as v;
 use App\Controllers\Controller;
+use App\Facades\Response;
+use App\Models\User;
+use App\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -13,22 +15,17 @@ class RegisterController extends Controller
 	}
 
 	public function store($request, $response)
-	{
-		v::with('App\\Validation\\Rules');
-
-		$validation = $this->c->validator->validate($request, [
-			'firstname' => v::notEmpty(),
-			'lastname' => v::notEmpty(),
-			'email' => v::uniqueIn('users', 'email'),
-			'password' => v::notEmpty() 	
-		]);
+	{	
+		dd($this->c->router->getNamedRoute('homee'));	
+		$validation = (new RegisterRequest($request, $response, $this->c))->validate();
 
 		if ($validation->failed()) {
-			return $response->withRedirect(
-				$this->c->router->pathFor('auth.register.create')
-			);
+			return Response::back();
 		}
 
-		dd("Stored");
+		$user = User::addUser($request);
+
+		// return redirect($this->c->router->pathFor('home'))$response->withRedirect($this->c->router->pathFor('home'));
+		return Response::redirect($this->c->router->pathFor('home'));
 	}
 }

@@ -51,6 +51,25 @@
 			</div>
 
 			<div class="field">
+				<label class="label" for="username">Username</label>
+
+				<div class="control">
+			    	<input 
+			    		class="input is-medium{{ errors.username ? ' is-danger' : '' }}" 
+			    		type="text" 
+			    		name="username"
+			    		value="{{ old.username }}"
+			    	>
+			    </div>
+
+			    {% if errors.username %}
+					<p class="help is-danger">
+						{{ errors.username|first }}
+					</p>
+			    {% endif %}
+			</div>
+
+			<div class="field">
 				<label class="label" for="email">Email</label>
 
 				<div class="control">

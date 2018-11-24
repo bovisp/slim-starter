@@ -8,12 +8,15 @@ class Validator
 {
 	protected $errors = [];
 
-	public function validate($request, array $rules)
+	public function validate($request, $response, array $rules)
 	{
+		$this->response = $response;
+		$this->request = $request;
+
 		foreach ($rules as $field => $rule) {
 			try {
 				$rule->setName(ucfirst($field))
-					->assert($request->getParam($field));
+					->assert($this->request->getParam($field));
 			} catch (NestedValidationException $e) {
 				$this->errors[$field] = $e->getMessages();
 			}
@@ -32,5 +35,12 @@ class Validator
 	public function errors()
 	{
 		return $this->errors;
+	}
+
+	public function back()
+	{
+		return $this->response->withRedirect(
+			$this->request->getHeader('HTTP_REFERER')[0]
+		);
 	}
 }

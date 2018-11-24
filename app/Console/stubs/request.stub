@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyNamespace;
+
+use Respect\Validation\Validator as v;
+
+class DummyClass extends FormRequest
+{
+	protected function rules()
+	{
+		v::with('App\\Validation\\Rules');
+
+		return [
+			// 	
+		];
+	}
+}

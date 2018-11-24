@@ -2,18 +2,20 @@
 
 namespace App\Middleware;
 
-class TrimWhitespace
+class TrimWhitespace extends Middleware
 {
 	public function __invoke($request, $response, $next)
 	{
 		$parsedBody = [];
 
-		foreach ($request->getParsedBody() as $field => $value) {
-			$parsedBody[$field] = $this->trim($value);
+		if ($request->getParsedBody() !== null) {
+			foreach ($request->getParsedBody() as $field => $value) {
+				$parsedBody[$field] = $this->trim($value);
+			}
+
+			$request = $request->withParsedBody($parsedBody);
 		}
-
-		$request = $request->withParsedBody($parsedBody);
-
+		
 		return $next($request, $response);
 	}
 

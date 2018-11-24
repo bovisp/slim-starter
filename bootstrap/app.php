@@ -33,6 +33,7 @@ $app = new \Slim\App([
 
 $container = $app->getContainer();
 
+require_once 'facades.php';
 require_once 'csrf.php';
 require_once 'views.php';
 require_once 'database.php';

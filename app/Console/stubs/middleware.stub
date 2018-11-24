@@ -1,0 +1,11 @@
+<?php
+
+namespace DummyNamespace;
+
+class DummyClass extends Middleware
+{
+	public function __invoke($request, $response, $next)
+	{
+		// 
+	}
+}

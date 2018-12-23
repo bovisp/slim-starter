@@ -2,9 +2,11 @@
 
 namespace App\Controllers\Auth;
 
-use App\Controllers\Controller;
-use App\Facades\Response;
 use App\Models\User;
+use App\Facades\Auth;
+use App\Facades\Request;
+use App\Facades\Response;
+use App\Controllers\Controller;
 use App\Requests\RegisterRequest;
 
 class RegisterController extends Controller
@@ -16,7 +18,6 @@ class RegisterController extends Controller
 
 	public function store($request, $response)
 	{	
-		dd($this->c->router->getNamedRoute('homee'));	
 		$validation = (new RegisterRequest($request, $response, $this->c))->validate();
 
 		if ($validation->failed()) {
@@ -25,7 +26,11 @@ class RegisterController extends Controller
 
 		$user = User::addUser($request);
 
-		// return redirect($this->c->router->pathFor('home'))$response->withRedirect($this->c->router->pathFor('home'));
-		return Response::redirect($this->c->router->pathFor('home'));
+		Auth::attempt($user->username, Request::get('password'));
+
+		return Response::redirect('home', [
+			'message' => 'You are now signed up!',
+			'type' => 'info'
+		]);
 	}
 }

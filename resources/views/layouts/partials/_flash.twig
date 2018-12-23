@@ -1,0 +1,15 @@
+{% if flash.type == 'info' %}
+	<div class="message is-info" style="margin-bottom: 1rem;">
+		<div class="message-body">
+			{{ flash.message }}
+		</div>
+	</div>
+{% endif %}
+
+{% if flash.type == 'error' %}
+	<div class="message is-danger" style="margin-bottom: 1rem;">
+		<div class="message-body">
+			{{ flash.message }}
+		</div>
+	</div>
+{% endif %}

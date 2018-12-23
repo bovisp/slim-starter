@@ -1,0 +1,63 @@
+{% extends 'layouts/auth.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+	<h2 class="title is-2 has-text-black-ter">
+		Login
+	</h2>
+
+	<div class="box">
+		{% include 'layouts/partials/_flash.twig' %}
+		
+		<form action="{{ path_for('auth.login.store') }}" method="POST">
+			{{ csrf_field() | raw }}
+
+			<div class="field">
+				<label class="label" for="username">Username</label>
+
+				<div class="control">
+			    	<input 
+			    		class="input is-medium{{ errors.username ? ' is-danger' : '' }}" 
+			    		type="text" 
+			    		name="username"
+			    		value="{{ old.username }}"
+			    	>
+			    </div>
+
+			    {% if errors.username %}
+					<p class="help is-danger">
+						{{ errors.username|first }}
+					</p>
+			    {% endif %}
+			</div>
+
+			<div class="field">
+				<label class="label" for="password">Password</label>
+
+				<div class="control">
+			    	<input 
+			    		class="input is-medium{{ errors.password ? ' is-danger' : '' }}" 
+			    		type="password" 
+			    		name="password"
+			    		value="{{ old.password }}"
+			    	>
+			    </div>
+
+			    {% if errors.password %}
+					<p class="help is-danger">
+						{{ errors.password|first }}
+					</p>
+			    {% endif %}
+			</div>
+
+			<div class="field">
+				<button class="button is-medium is-dark is-fullwidth">
+					Login
+				</button>
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

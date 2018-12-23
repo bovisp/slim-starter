@@ -17,6 +17,7 @@ class Kernel
 		\App\Console\Commands\Generators\ModelGenerator::class,
 		\App\Console\Commands\Generators\MiddlewareGenerator::class,
 		\App\Console\Commands\Generators\RequestGenerator::class,
+		\App\Console\Commands\Generators\RuleGenerator::class,
 	];
 
 	public function getCommands()

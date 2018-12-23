@@ -1,12 +1,17 @@
 <?php
 
-App\Facades\Str::setContainer($container);
 App\Facades\Response::setContainer($container);
-
-$container['str'] = function ($container) {
-	return new \App\Helpers\Str();
-};
+App\Facades\Auth::setContainer($container);
+App\Facades\Request::setContainer($container);
 
 $container['res'] = function ($container) {
 	return new \App\Helpers\Response($container);
+};
+
+$container['req'] = function ($container) {
+	return new \App\Helpers\Request($container);
+};
+
+$container['auth'] = function ($container) {
+	return new \App\Auth\Auth($container);
 };

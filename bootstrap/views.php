@@ -16,5 +16,12 @@ $container['view'] = function ($container) {
     $view->addExtension(new App\TwigExtensions\MethodField);
     $view->addExtension(new App\TwigExtensions\GetEnv);
 
+    $view->getEnvironment()->addGlobal('auth', [
+        'check' => $container->auth->check(),
+        'guest' => $container->auth->guest(),
+        'user' => $container->auth->user(),
+        'id' => $container->auth->id()
+    ]);
+
     return $view;
 };

@@ -16,28 +16,36 @@
       <div class="navbar-start"></div>
 
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Paul Bovis
+
+        {% if auth.check %}
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              {{ auth.user.firstname }} {{ auth.user.lastname }}
+            </a>
+
+            <div class="navbar-dropdown">
+              <a href="{{ path_for('auth.reset.show') }}" class="navbar-item">
+                Change password
+              </a>
+              <a href="{{ path_for('auth.logout.store') }}" class="navbar-item">
+                Sign out
+              </a>
+            </div>
+          </div>
+
+        {% else %}
+
+          <a href="{{ path_for('auth.login.create') }}" class="navbar-item">
+            Login
           </a>
 
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              Change password
-            </a>
-            <a class="navbar-item">
-              Sign out
-            </a>
-          </div>
-        </div>
+          <a href="{{ path_for('auth.register.create') }}" class="navbar-item">
+            Register
+          </a>
 
-        <a href="#" class="navbar-item">
-          Sign in
-        </a>
+        {% endif %}
 
-        <a href="{{ path_for('auth.register.create') }}" class="navbar-item">
-          Sign up
-        </a>
       </div>
     </div>
   </div>

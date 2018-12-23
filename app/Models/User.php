@@ -20,4 +20,11 @@ class User extends Model
 			'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT)
 		]);
 	}
+
+	public function setPassword($password)
+	{
+		$this->update([
+			'password' => password_hash($password, PASSWORD_DEFAULT)
+		]);
+	}
 }

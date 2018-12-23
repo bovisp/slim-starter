@@ -34,7 +34,7 @@ class Migrate extends Command
 	 */
 	public function handle(InputInterface $input, OutputInterface $output)
 	{
-		exec('vendor\bin\phinx migrate');
+		exec('vendor/bin/phinx migrate');
 
 		$this->info('Migrations successfully completed.');
 	}

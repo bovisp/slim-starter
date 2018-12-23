@@ -10,8 +10,8 @@ class Guest extends Middleware
 	public function __invoke($request, $response, $next)
 	{
 		if (Auth::check()) {
-			return Response::redirect('auth.login.create', [
-				'message' => 'You can\'t be signed in to do that',
+			return Response::redirect('home', [
+				'message' => 'You are not authorized to do that',
 				'type' => 'error'
 			]);
 		}
